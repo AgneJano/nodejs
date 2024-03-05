@@ -1,0 +1,26 @@
+[
+  {
+    "id": 2,
+    "name": "Seafood soup",
+    "price": 14,
+    "category": "appetizer"
+  },
+  {
+    "id": 3,
+    "name": "Tiramisu",
+    "price": 8,
+    "category": "dessert"
+  },
+  {
+    "id": 4,
+    "name": "Margaretta",
+    "price": 12,
+    "category": "appetizer"
+  },
+  {
+    "name": "Four cheese pizza",
+    "price": 18,
+    "category": "main course",
+    "id": 5
+  }
+]
