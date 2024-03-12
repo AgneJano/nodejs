@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "customerId": 1,
+    "Items": [
+      {
+        "menuItemId": 2,
+        "quantity": 1
+      }
+    ]
+  }
+]

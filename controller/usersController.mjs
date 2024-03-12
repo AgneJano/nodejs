@@ -1,4 +1,6 @@
 import users from '../db/users.json' assert {type: "json"};
+import orders from '../db/orders.json' assert {type: "json"};
+import menu from '../db/menu.json' assert {type: "json"};
 
 import fs from 'fs';
 import path, { dirname } from 'path';
@@ -111,6 +113,65 @@ const userController = {
         }
 
 
+    },
+
+    createOrderUser: async (req, res) => {
+        try {
+            const userId = Number(req.params.userId);
+            const menuItemId = Number(req.query.menuItemId);
+            const quantity = Number(req.query.quantity);
+            // const newOrder = req.body
+
+            const user = users.find(user => user.id === userId);
+
+            if (!user) {
+                res.status(404).json({message: 'User not found.'});
+                return;
+            }
+
+            // const maxOrderId = Math.max(...orders.map(order => order.id));
+
+            let maxOrderId;
+            if(orders.length > 0) {
+                maxOrderId = Math.max(...orders.map(order => order.id))
+            } else {
+                maxOrderId = 0;
+            }
+
+            // let maxOrderId = orders.length > 0 ? Math.max(...orders.map(order => order.id)) : 0;
+
+            const orderToSave = {
+                id: maxOrderId + 1,
+                customerId: userId,
+                Items: []
+            }
+
+            const menuItem = menu.find(menu => menu.id === menuItemId)
+
+            if(!menuItem) {
+                res.status(400).json({message: 'Menu item with ID you written does not exist'});
+                return;
+            }
+
+            orderToSave.Items.push({
+                menuItemId: menuItemId,
+                quantity:  quantity
+            });
+
+            orders.push(orderToSave);
+
+            user.orders.push(orderToSave.id);
+
+            await fs.promises.writeFile(path.join(__dirname, '../db/orders.json'), JSON.stringify(orders, null, 2));
+
+            await fs.promises.writeFile(path.join(__dirname, '../db/users.json'), JSON.stringify(users, null, 2));
+
+            res.status(201).json(orderToSave)
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'An error occurred while creating the order.' })
+        }
     }
 
 }

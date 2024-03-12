@@ -52,7 +52,7 @@ const menuController = {
     getMenuId: (req, res) => {
         try {
             const id = parseInt(req.params.id);
-            const foundMenu = menuController.menu.find(menuItem => menuItem.id === id);
+            const foundMenu = menu.find(menuItem => menuItem.id === id);
 
             if (!foundMenu) {
                 res.status(404).json({ message: 'Dish not found.' });

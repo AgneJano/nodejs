@@ -6,7 +6,9 @@
     "password": "anne",
     "phone number": "12334565",
     "adress": "Street 34",
-    "orders": []
+    "orders": [
+      1
+    ]
   },
   {
     "name": "Jonas",
