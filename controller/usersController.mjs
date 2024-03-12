@@ -115,6 +115,32 @@ const userController = {
 
     },
 
+    getUserReservation: (req, res) => {
+        try {
+            const id = parseInt(req.params.id);
+            const user = users.find(user => user.id === id);
+            const order = orders.find(order => order.id === id);
+
+            if (!user) {
+                res.status(404).json({ message: 'User not found.' });
+                return;
+            }
+
+            const orderedMenu = orders.filter(order => user.orders.includes(order.id));
+
+            const orderMenuInfo = orderedMenu.map(menu => ({
+                id: menu.id,
+                name: menu.name,
+                price: menu.price,
+                category: menu.category
+            }));
+            res.status(200).json(orderMenuInfo);
+        } catch (error) {
+            res.status(500).json({ message: 'An error occured while getting user ordered menu.' })
+        }
+
+    },
+
     createOrderUser: async (req, res) => {
         try {
             const userId = Number(req.params.userId);
