@@ -4,7 +4,7 @@
     "name": "Anne",
     "email": "anne@mail.com",
     "password": "anne",
-    "phone number": "12334565",
+    "phone_number": "12334565",
     "adress": "Street 34",
     "orders": [
       2
@@ -14,7 +14,7 @@
     "name": "Jonas",
     "email": "jonelis@mail.com",
     "password": "jonukas",
-    "phone number": "5566655",
+    "phone_number": "5566655",
     "adress": "Street 90",
     "orders": [
       3
@@ -26,7 +26,7 @@
     "name": "Judith",
     "email": "judith@mail.com",
     "password": "judith",
-    "phone number": "8888445",
+    "phone_number": "8888445",
     "adress": "Street 20",
     "orders": []
   },
@@ -35,7 +35,7 @@
     "name": "Pietro",
     "email": "pietro@mail.com",
     "password": "pietro",
-    "phone number": "00000000",
+    "phone_number": "00000000",
     "adress": "Street X",
     "orders": []
   }
