@@ -119,16 +119,16 @@ const userController = {
         try {
             const id = parseInt(req.params.id);
             const user = users.find(user => user.id === id);
-            const order = orders.find(order => order.id === id);
+            // const order = orders.find(order => order.id === id);
 
             if (!user) {
                 res.status(404).json({ message: 'User not found.' });
                 return;
             }
 
-            const orderedMenu = orders.filter(order => user.orders.includes(order.id));
+            const orderedDishes = menu.filter(menu => user.orders.includes(menu.id));
 
-            const orderMenuInfo = orderedMenu.map(menu => ({
+            const orderMenuInfo = orderedDishes.map(menu => ({
                 id: menu.id,
                 name: menu.name,
                 price: menu.price,
@@ -197,6 +197,48 @@ const userController = {
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'An error occurred while creating the order.' })
+        }
+    },
+
+    deleteReservation: async (req, res) => {
+        try {
+            const userId = parseInt(req.params.userId);
+            const orderId = parseInt(req.params.orderId);
+    
+            const user = users.find(user => user.id === userId);
+            const order = orders.find(order => order.id === orderId);
+    
+            if (!user || !order) {
+                res.status(404).json({message: 'Order in user orders not found.'});
+                return;
+            };
+    
+            const orderIndex = user.orders.indexOf(orderId);
+    
+            if(orderIndex === -1) {
+                res.status(400).json({message: 'Order is not reserved by the user.'});
+                return;
+            }
+    
+            user.orders.splice(orderIndex, 1);
+
+            const removerOrderIndex = orders.findIndex(order => order.id === orderId);
+
+            if (removerOrderIndex === -1) {
+                res.status(404).json({message: 'Order in order.json not found.'});
+                return;
+            }
+
+            orders.splice(removerOrderIndex, 1);
+
+            await fs.promises.writeFile(path.join(__dirname, '../db/users.json'), JSON.stringify(users, null, 2));
+    
+            await fs.promises.writeFile(path.join(__dirname, '../db/orders.json'), JSON.stringify(orders, null, 2));
+    
+            res.status(200).json({ message: 'Order successfully unreserved.' });
+    
+        } catch (error) {
+            res.status(500).json({ message: 'An error occurred while deleting the order.' })
         }
     }
 

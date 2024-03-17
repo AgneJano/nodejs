@@ -7,7 +7,7 @@
     "phone number": "12334565",
     "adress": "Street 34",
     "orders": [
-      1
+      2
     ]
   },
   {
@@ -16,7 +16,9 @@
     "password": "jonukas",
     "phone number": "5566655",
     "adress": "Street 90",
-    "orders": [],
+    "orders": [
+      3
+    ],
     "id": 2
   },
   {

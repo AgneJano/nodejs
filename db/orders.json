@@ -1,11 +1,21 @@
 [
   {
-    "id": 1,
+    "id": 2,
     "customerId": 1,
     "Items": [
       {
         "menuItemId": 2,
         "quantity": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "customerId": 2,
+    "Items": [
+      {
+        "menuItemId": 3,
+        "quantity": 2
       }
     ]
   }

@@ -5,8 +5,7 @@ import menuRouter from './routes/index.mjs';
 const app = express();
 app.use(express.json());
 
-app.use('/api/v1/restaurant', usersRouter)
-app.use('/api/v1/restaurant', menuRouter)
+app.use('/api/v1/restaurant', usersRouter, menuRouter)
 
 app.use(usersRouter);
 app.use(menuRouter)

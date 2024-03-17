@@ -1,12 +1,12 @@
 [
   {
-    "id": 2,
-    "name": "Tiramisu",
-    "price": 8,
-    "category": "dessert"
+    "name": "Rasberry tiramisu",
+    "price": 9,
+    "category": "dessert",
+    "id": 1
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "Margaretta",
     "price": 12,
     "category": "appetizer"
@@ -15,12 +15,24 @@
     "name": "Four cheese pizza",
     "price": 18,
     "category": "main course",
-    "id": 4
+    "id": 3
   },
   {
     "name": "Oyster soup",
     "price": 8,
     "category": "soups",
+    "id": 4
+  },
+  {
+    "name": "Fish soup",
+    "price": 7,
+    "category": "soups",
     "id": 5
+  },
+  {
+    "name": "Vegan burger",
+    "price": 13,
+    "category": "main course",
+    "id": 6
   }
 ]

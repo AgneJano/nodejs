@@ -7,7 +7,6 @@ router.get('/', menuController.getMenu);
 
 router.post('/register', menuController.createMenu);
 
-//neveikia pagal id kazkodel.
 router.get('/:id', menuController.getMenuId);
 
 router.put('/:id', menuController.updateMenu);
