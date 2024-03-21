@@ -240,7 +240,24 @@ const userController = {
         } catch (error) {
             res.status(500).json({ message: 'An error occurred while deleting the order.' })
         }
-    }
+    },
+
+    login: async (req, res) => {
+        try {
+            const { username, email } = req.body;
+
+            const user = await userModel.login({ username, email });
+       
+            res.status(200).json({ message: 'User Logged in successfully', user })
+        } catch (error) {
+            if (error.message === 'User not found' || error.message === 'Invalid credentials.') {
+                res.status(401).json({ message: error.message })
+            } else {
+                console.error(error);
+                res.status(500).json({ message: 'An error occurred while logging in.' })
+            }
+        }
+    },
 
 }
 
